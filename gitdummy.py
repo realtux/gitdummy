@@ -35,6 +35,10 @@ line_re = re.compile(r'^(.+)(?:\|\|\|\|)(.+)(?:\|\|\|\|)(.+)(?:\|\|\|\|)(.+)', r
 commits = []
 
 for line in log_split:
+    if '||||||||' in line: continue
+    if '||||||||||||' in line: continue
+    if '||||||||||||||||' in line: continue
+
     commit_line = line_re.search(line).groups()
 
     commits.append({
