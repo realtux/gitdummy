@@ -9,7 +9,7 @@ if not os.path.isdir(git_directory.strip() + '/.git'):
     print 'Sorry, this doesn\'t appear to be a Git repo';
     quit()
 
-target_directory = raw_input('Where should I create the dummy repo: ')
+target_directory = raw_input('Where should the dummy repo be created: ')
 
 if os.path.isdir(target_directory.strip()):
     print 'Sorry, the target directory already exists, please specify an empty one';
