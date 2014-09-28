@@ -2,6 +2,7 @@ import os
 import re
 import subprocess
 import pprint
+from distutils.util import strtobool
 
 git_directory = raw_input('Where is your Git repo: ')
 
@@ -18,6 +19,9 @@ if os.path.isdir(target_directory.strip()):
 commit_email = raw_input('Which email address should commits be checked against: ')
 new_email = raw_input('Which email address should be used in the dummy commits: ')
 new_name = raw_input('Which name should be used in the dummy commits: ')
+private_repo = raw_input('Hide commit messages, Yes or No')
+
+is_private = strtobool(private_repo)
 
 log_output = subprocess.check_output([
     'git',
@@ -77,10 +81,16 @@ subprocess.call([
 
 i = 1
 
+private_commit_message = 'Commit message is private'
+
+
 for commit in commits:
+    if is_private != 1:
+        private_commit_message = commit['message']
+
     if commit['email'] == commit_email:
         file = open(target_directory + '/commit' + str(i) + '.txt', 'w+')
-        file.write(commit['message'])
+        file.write(private_commit_message)    
         file.close()
 
         subprocess.call([
@@ -100,7 +110,7 @@ for commit in commits:
             target_directory,
             'commit',
             '-m',
-            commit['message']
+            private_commit_message
         ])
 
         i += 1
