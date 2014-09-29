@@ -83,13 +83,12 @@ i = 1
 
 private_commit_message = 'Commit message is private'
 
-
 for commit in commits:
     if is_private != 1:
         private_commit_message = commit['message']
 
     if commit['email'] == commit_email:
-        file = open(target_directory + '/commit' + '0000' +str(i) + '.txt', 'w+')
+        file = open(target_directory + '/commit' + str(i).zfill(5) + '.txt', 'w+')
         file.write(private_commit_message)    
         file.close()
 
