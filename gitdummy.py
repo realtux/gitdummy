@@ -89,7 +89,7 @@ for commit in commits:
         private_commit_message = commit['message']
 
     if commit['email'] == commit_email:
-        file = open(target_directory + '/commit' + str(i) + '.txt', 'w+')
+        file = open(target_directory + '/commit' + '0000' +str(i) + '.txt', 'w+')
         file.write(private_commit_message)    
         file.close()
 
