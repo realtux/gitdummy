@@ -7,13 +7,13 @@ from distutils.util import strtobool
 git_directory = raw_input('Where is your Git repo: ')
 
 if not os.path.isdir(git_directory.strip() + '/.git'):
-    print 'Sorry, this doesn\'t appear to be a Git repo';
+    print 'Sorry, this doesn\'t appear to be a Git repo'
     quit()
 
 target_directory = raw_input('Where should the dummy repo be created: ')
 
 if os.path.isdir(target_directory.strip()):
-    print 'Sorry, the target directory already exists, please specify an empty one';
+    print 'Sorry, the target directory already exists, please specify an empty one'
     quit()
 
 commit_email = raw_input('Which email address should commits be checked against: ')
@@ -46,10 +46,10 @@ for line in log_split:
     commit_line = line_re.search(line).groups()
 
     commits.append({
-        'name' : commit_line[0],
-        'email' : commit_line[1],
-        'date' : commit_line[2],
-        'message' : commit_line[3]
+        'name': commit_line[0],
+        'email': commit_line[1],
+        'date': commit_line[2],
+        'message': commit_line[3]
     })
 
 os.makedirs(target_directory)
