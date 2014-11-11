@@ -19,7 +19,7 @@ if os.path.isdir(target_directory.strip()):
 commit_email = raw_input('Which email address should commits be checked against: ')
 new_email = raw_input('Which email address should be used in the dummy commits: ')
 new_name = raw_input('Which name should be used in the dummy commits: ')
-private_repo = raw_input('Hide commit messages, Yes or No')
+private_repo = raw_input('Hide commit messages? (yes/no): ')
 
 is_private = strtobool(private_repo)
 
