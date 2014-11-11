@@ -1,13 +1,9 @@
 GitDummy v2
 ========
 
-Ever wanted to include your private repository contributions to your contribution panel? Well now you can. This script will read from an existing repository and transcribe all of the commit messages into a dummy repository that you can then add publicly to your GitHub account. This script transfers no source code, only commit stubs and their associated dates.
+Ever wanted to include your private repository contributions to your contribution panel? Well now you can. This script will read from existing repositories and transcribe all of the commit messages into dummy repositories that you can then add publicly to your GitHub account. This script transfers no source code, only commit stubs and their associated dates. This script can be ran multiple times and will update the dummy repo as you go.
 
-Usage is simple (after you've created your JSON file):
-```
-python gitdummy.py
-```
-Your JSON file will look similiar to:
+Step 1: Create the JSON file of your repositories:
 ```json
 [
     {
@@ -19,6 +15,11 @@ Your JSON file will look similiar to:
     }
 ]
 ```
+Step 1: Run the script as many times as you'd like
+```
+python gitdummy.py
+```
+Your JSON file will look similiar to:
 
 #### Where is your Git repo (target_repo)
 Here you must provide the Git repo that you want to transcribe from. The directory must exist and contain a .git folder inside.
