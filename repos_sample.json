@@ -1,12 +1,12 @@
 [
     {
-        "target_repo"  : "/var/www/html/convetit",
-        "target_email" : "b@bri.io",
-        "dummy_repo"   : "/var/www/html/dummy_convetit",
-        "dummy_email"  : "imbrianseymour@gmail.com",
-        "dummy_name"   : "Brian Seymour",
+        "target_repo"  : "/home/brian/myrepo",
+        "target_email" : "brian@example.org",
+        "dummy_repo"   : "/home/brian/dummy_myrepo",
+        "dummy_email"  : "brian@example.org",
+        "dummy_name"   : "Brian Seymour"
         "hide_commits" : false,
         "auto_push"    : true,
-        "remote"       : "https://github.com/ebrian/dummy-convetit"
+        "remote"       : "https://github.com/yourname/dummy_repo"
     }
 ]
