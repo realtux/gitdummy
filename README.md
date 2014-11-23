@@ -11,7 +11,10 @@ Ever wanted to include your private repository contributions to your contributio
         "target_email" : "brian@example.org",
         "dummy_repo"   : "/home/brian/dummy_myrepo",
         "dummy_email"  : "brian@example.org",
-        "dummy_name"   : "Brian Seymour"
+        "dummy_name"   : "Brian Seymour",
+        "hide_commits" : false,
+        "auto_push"    : true,
+        "remote"       : "https://github.com/yourname/dummy_repo"
     }
 ]
 ```
@@ -30,6 +33,15 @@ Here you must provide a new email address the dummy commits will be made as. Thi
 
 ##### Which name should be used in the dummy commits (dummy_name)
 Here you must provide the name the dummy commits will be made as. This really has no bearing, but, it should be your name.
+
+##### Whether or not to expose the commit messages (hide_commits)
+You may not want to show the commit messages in your dummy repo. If this is the case, set this to true and a simple "private commit message" commit message will be put instead.
+
+##### Whether or not to run a `git push origin master` at the end (auto_push)
+If this is set to true, you'll be prompted for your repo credentials for the push.
+
+##### Which remote repo should the dummy repo be pushed to (remote)
+Here you must provide the GitHub URL that your dummy repo resides at.
 
 #### Step 2: Run the script as many times as you'd like
 ```
