@@ -15,6 +15,16 @@ Ever wanted to include your private repository contributions to your contributio
         "hide_commits" : false,
         "auto_push"    : true,
         "remote"       : "https://github.com/yourname/dummy_repo"
+    },
+    {
+        "target_repo"  : "/home/brian/myotherprivaterepo",
+        "target_email" : "brian@example.org",
+        "dummy_repo"   : "/home/brian/dummy_myotherprivaterepo",
+        "dummy_email"  : "brian@example.org",
+        "dummy_name"   : "Brian Seymour"
+        "hide_commits" : true,
+        "auto_push"    : true,
+        "remote"       : "https://github.com/yourname/dummy_privaterepo"
     }
 ]
 ```
