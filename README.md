@@ -21,7 +21,7 @@ Ever wanted to include your private repository contributions to your contributio
         "target_email" : "brian@example.org",
         "dummy_repo"   : "/home/brian/dummy_myotherprivaterepo",
         "dummy_email"  : "brian@example.org",
-        "dummy_name"   : "Brian Seymour"
+        "dummy_name"   : "Brian Seymour",
         "hide_commits" : true,
         "auto_push"    : true,
         "remote"       : "https://github.com/yourname/dummy_privaterepo"
