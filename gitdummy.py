@@ -1,115 +1,151 @@
 import os
+import json
 import re
 import subprocess
 import pprint
-from distutils.util import strtobool
 
-git_directory = raw_input('Where is your Git repo: ')
-
-if not os.path.isdir(git_directory.strip() + '/.git'):
-    print 'Sorry, this doesn\'t appear to be a Git repo'
+# check for repos.json
+if not os.path.isfile('repos.json'):
+    print 'No repos.json found, please create one'
     quit()
 
-target_directory = raw_input('Where should the dummy repo be created: ')
+repos = json.load(open('repos.json'))
 
-if os.path.isdir(target_directory.strip()):
-    print 'Sorry, the target directory already exists, please specify an empty one'
-    quit()
+for repo in repos:
+    # make sure dummy repo doesn't exist or does exist with a .gitdummy file
+    if os.path.isdir(repo['dummy_repo'].strip()):
+        if not os.path.isfile(repo['dummy_repo'] + os.path.sep + '.gitdummy'):
+            print \
+                'Warning: ' + \
+                repo['dummy_repo'] + \
+                ' exists but doesn\'t contain a .gitdummy file, are you sure this is a dummy repo?'
+            quit()
+    else:
+        os.mkdir(repo['dummy_repo'])
 
-commit_email = raw_input('Which email address should commits be checked against: ')
-new_email = raw_input('Which email address should be used in the dummy commits: ')
-new_name = raw_input('Which name should be used in the dummy commits: ')
-private_repo = raw_input('Hide commit messages? (yes/no): ')
+        dotgitdummy = open(repo['dummy_repo'] + os.path.sep + '.gitdummy', 'w+')
+        dotgitdummy.write('')
+        dotgitdummy.close()
 
-is_private = strtobool(private_repo)
+        dotgitignore = open(repo['dummy_repo'] + os.path.sep + '.gitignore', 'w+')
+        dotgitignore.write('.gitdummy')
+        dotgitignore.close()
 
-log_output = subprocess.check_output([
-    'git',
-    '-C',
-    git_directory,
-    'log',
-    '--reverse',
-    '--pretty=format:%an||||%ae||||%ad||||%s'
-])
+    log_output = subprocess.check_output([
+        'git',
+        '-C',
+        repo['target_repo'],
+        'log',
+        '--reverse',
+        '--pretty=format:%an||||%ae||||%ad||||%s'
+    ])
 
-log_split = log_output.split('\n')
+    log_split = log_output.split('\n')
 
-line_re = re.compile(r'^(.+)(?:\|\|\|\|)(.+)(?:\|\|\|\|)(.+)(?:\|\|\|\|)(.+)', re.DOTALL)
+    line_re = re.compile(r'^(.+)(?:\|\|\|\|)(.+)(?:\|\|\|\|)(.+)(?:\|\|\|\|)(.+)', re.DOTALL)
 
-commits = []
+    commits = []
 
-for line in log_split:
-    if '||||||||' in line: continue
-    if '||||||||||||' in line: continue
-    if '||||||||||||||||' in line: continue
+    for line in log_split:
+        if '||||||||' in line: continue
+        if '||||||||||||' in line: continue
+        if '||||||||||||||||' in line: continue
 
-    commit_line = line_re.search(line).groups()
+        commit_line = line_re.search(line).groups()
 
-    commits.append({
-        'name': commit_line[0],
-        'email': commit_line[1],
-        'date': commit_line[2],
-        'message': commit_line[3]
-    })
+        commits.append({
+            'name': commit_line[0],
+            'email': commit_line[1],
+            'date': commit_line[2],
+            'message': commit_line[3]
+        })
 
-os.makedirs(target_directory)
+    subprocess.call([
+        'git',
+        '-C',
+        repo['dummy_repo'],
+        'init'
+    ])
 
-subprocess.call([
-    'git',
-    '-C',
-    target_directory,
-    'init'
-])
+    subprocess.call([
+        'git',
+        '-C',
+        repo['dummy_repo'],
+        'config',
+        'user.name',
+        '\'' + repo['dummy_name'] + '\''
+    ])
 
-subprocess.call([
-    'git',
-    '-C',
-    target_directory,
-    'config',
-    'user.name',
-    '\'' + new_name + '\''
-])
+    subprocess.call([
+        'git',
+        '-C',
+        repo['dummy_repo'],
+        'config',
+        'user.email',
+        '\'' + repo['dummy_email'] + '\''
+    ])
 
-subprocess.call([
-    'git',
-    '-C',
-    target_directory,
-    'config',
-    'user.email',
-    '\'' + new_email + '\''
-])
+    i = 1
 
-i = 1
+    private_commit_message = 'Commit message is private'
 
-private_commit_message = 'Commit message is private'
+    for commit in commits:
+        if repo['hide_commits'] is not True:
+            private_commit_message = commit['message']
 
-for commit in commits:
-    if is_private != 1:
-        private_commit_message = commit['message']
+        if commit['email'] == repo['target_email']:
+            file = open(repo['dummy_repo'] + '/commit' + str(i).zfill(5) + '.txt', 'w+')
+            file.write(private_commit_message)
+            file.close()
 
-    if commit['email'] == commit_email:
-        file = open(target_directory + '/commit' + str(i).zfill(5) + '.txt', 'w+')
-        file.write(private_commit_message)    
-        file.close()
+            subprocess.call([
+                'git',
+                '-C',
+                repo['dummy_repo'],
+                'add',
+                '-A',
+            ])
 
+            subprocess.call([
+                'env',
+                'GIT_AUTHOR_DATE=\'' + commit['date'] + '\'',
+                'GIT_COMMITTER_DATE=\'' + commit['date'] + '\'',
+                'git',
+                '-C',
+                repo['dummy_repo'],
+                'commit',
+                '-m',
+                private_commit_message
+            ])
+
+            i += 1
+
+    if repo['auto_push'] is True:
         subprocess.call([
             'git',
             '-C',
-            target_directory,
+            repo['dummy_repo'],
+            'remote',
             'add',
-            '-A',
+            'origin',
+            repo['remote'],
         ])
 
         subprocess.call([
-            'env',
-            'GIT_AUTHOR_DATE=\'' + commit['date'] + '\'',
-            'GIT_COMMITTER_DATE=\'' + commit['date'] + '\'',
             'git',
             '-C',
-            target_directory,
-            'commit',
-            '-m',
-            private_commit_message
+            repo['dummy_repo'],
+            'remote',
+            'set-url',
+            'origin',
+            repo['remote'],
         ])
 
-        i += 1
+        subprocess.call([
+            'git',
+            '-C',
+            repo['dummy_repo'],
+            'push',
+            'origin',
+            'master',
+        ])
