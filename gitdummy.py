@@ -2,7 +2,6 @@ import os
 import json
 import re
 import subprocess
-import pprint
 
 # check for repos.json
 if not os.path.isfile('repos.json'):
@@ -15,10 +14,12 @@ for repo in repos:
     # make sure dummy repo doesn't exist or does exist with a .gitdummy file
     if os.path.isdir(repo['dummy_repo'].strip()):
         if not os.path.isfile(repo['dummy_repo'] + os.path.sep + '.gitdummy'):
+            print '##############################################'
             print \
                 'Warning: ' + \
                 repo['dummy_repo'] + \
                 ' exists but doesn\'t contain a .gitdummy file, are you sure this is a dummy repo?'
+            print '##############################################'
             quit()
     else:
         os.mkdir(repo['dummy_repo'])
