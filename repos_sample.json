@@ -4,7 +4,7 @@
         "target_email" : "brian@example.org",
         "dummy_repo"   : "/home/brian/dummy_myrepo",
         "dummy_email"  : "brian@example.org",
-        "dummy_name"   : "Brian Seymour"
+        "dummy_name"   : "Brian Seymour",
         "hide_commits" : false,
         "auto_push"    : true,
         "remote"       : "https://github.com/yourname/dummy_repo"
