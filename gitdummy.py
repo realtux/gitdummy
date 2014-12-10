@@ -34,8 +34,8 @@ for repo in repos:
 
     log_output = subprocess.check_output([
         'git',
-        '-C',
-        repo['target_repo'],
+        '--git-dir=' + repo['target_repo'] + '/.git',
+        '--work-tree=' + repo['target_repo'] + '',
         'log',
         '--reverse',
         '--pretty=format:%an||||%ae||||%ad||||%s'
@@ -63,15 +63,15 @@ for repo in repos:
 
     subprocess.call([
         'git',
-        '-C',
-        repo['dummy_repo'],
+        '--git-dir=' + repo['dummy_repo'] + '/.git',
+        '--work-tree=' + repo['dummy_repo'] + '',
         'init'
     ])
 
     subprocess.call([
         'git',
-        '-C',
-        repo['dummy_repo'],
+        '--git-dir=' + repo['dummy_repo'] + '/.git',
+        '--work-tree=' + repo['dummy_repo'] + '',
         'config',
         'user.name',
         '\'' + repo['dummy_name'] + '\''
@@ -79,8 +79,8 @@ for repo in repos:
 
     subprocess.call([
         'git',
-        '-C',
-        repo['dummy_repo'],
+        '--git-dir=' + repo['dummy_repo'] + '/.git',
+        '--work-tree=' + repo['dummy_repo'] + '',
         'config',
         'user.email',
         '\'' + repo['dummy_email'] + '\''
@@ -94,15 +94,18 @@ for repo in repos:
         if repo['hide_commits'] is not True:
             private_commit_message = commit['message']
 
-        if commit['email'] == repo['target_email']:
+        if not isinstance(repo['target_email'], list):
+            repo['target_email'] = [repo['target_email']]
+
+        if commit['email'] in repo['target_email']:
             file = open(repo['dummy_repo'] + '/commit' + str(i).zfill(5) + '.txt', 'w+')
             file.write(private_commit_message)
             file.close()
 
             subprocess.call([
                 'git',
-                '-C',
-                repo['dummy_repo'],
+                '--git-dir=' + repo['dummy_repo'] + '/.git',
+                '--work-tree=' + repo['dummy_repo'] + '',
                 'add',
                 '-A',
             ])
@@ -112,8 +115,8 @@ for repo in repos:
                 'GIT_AUTHOR_DATE=\'' + commit['date'] + '\'',
                 'GIT_COMMITTER_DATE=\'' + commit['date'] + '\'',
                 'git',
-                '-C',
-                repo['dummy_repo'],
+                '--git-dir=' + repo['dummy_repo'] + '/.git',
+                '--work-tree=' + repo['dummy_repo'] + '',
                 'commit',
                 '-m',
                 private_commit_message
@@ -124,8 +127,8 @@ for repo in repos:
     if repo['auto_push'] is True:
         subprocess.call([
             'git',
-            '-C',
-            repo['dummy_repo'],
+            '--git-dir=' + repo['dummy_repo'] + '/.git',
+            '--work-tree=' + repo['dummy_repo'] + '',
             'remote',
             'add',
             'origin',
@@ -134,8 +137,8 @@ for repo in repos:
 
         subprocess.call([
             'git',
-            '-C',
-            repo['dummy_repo'],
+            '--git-dir=' + repo['dummy_repo'] + '/.git',
+            '--work-tree=' + repo['dummy_repo'] + '',
             'remote',
             'set-url',
             'origin',
@@ -144,8 +147,8 @@ for repo in repos:
 
         subprocess.call([
             'git',
-            '-C',
-            repo['dummy_repo'],
+            '--git-dir=' + repo['dummy_repo'] + '/.git',
+            '--work-tree=' + repo['dummy_repo'] + '',
             'push',
             'origin',
             'master',
