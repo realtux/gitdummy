@@ -3,7 +3,7 @@ GitDummy v2
 
 Ever wanted to include your private repository contributions to your contribution panel? Well now you can. This script will read from existing repositories and transcribe all of the commit messages into dummy repositories that you can then add publicly to your GitHub account. This script transfers no source code, only commit stubs and their associated dates. This script can be ran multiple times and will update the dummy repo as you go.
 
-#### Step 1: Create the JSON file of your repositories (repos.json):
+#### Step 1: Create the JSON array of your repositories (repos.json):
 ```json
 [
     {
