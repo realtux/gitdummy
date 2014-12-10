@@ -1,4 +1,4 @@
-GitDummy v2
+GitDummy v3
 ========
 
 Ever wanted to include your private repository contributions to your contribution panel? Well now you can. This script will read from existing repositories and transcribe all of the commit messages into dummy repositories that you can then add publicly to your GitHub account. This script transfers no source code, only commit stubs and their associated dates. This script can be ran multiple times and will update the dummy repo as you go.
@@ -10,20 +10,42 @@ Ever wanted to include your private repository contributions to your contributio
         "target_repo"  : "/home/brian/myrepo",
         "target_email" : "brian@example.org",
         "dummy_repo"   : "/home/brian/dummy_myrepo",
+        "dummy_repo_data"   : "/home/brian/dummy_myrepo/data",
         "dummy_email"  : "brian@example.org",
         "dummy_name"   : "Brian Seymour",
+        "dummy_ext"    : ".js",
+        "dummy_code"   : "'use strict';",
         "hide_commits" : false,
         "auto_push"    : true,
+        "force"        : false,
+        "remote"       : "https://github.com/yourname/dummy_repo"
+    },
+    {
+        "target_repo"  : "/home/brian/myrepo-old",
+        "target_email" : "brian@example.org",
+        "dummy_repo"   : "/home/brian/dummy_myrepo",
+        "dummy_repo_data"   : "/home/brian/dummy_myrepo/data",
+        "dummy_email"  : "brian@example.org",
+        "dummy_name"   : "Brian Seymour",
+        "dummy_ext"    : ".java",
+        "dummy_code"   : "public class HelloWorld{public static void main(String[] args) {System.out.println(\"Hello World!\");}}",
+        "hide_commits" : false,
+        "auto_push"    : true,
+        "force"        : false,
         "remote"       : "https://github.com/yourname/dummy_repo"
     },
     {
         "target_repo"  : "/home/brian/myotherprivaterepo",
         "target_email" : "brian@example.org",
         "dummy_repo"   : "/home/brian/dummy_myotherprivaterepo",
+        "dummy_repo_data"   : "/home/brian/dummy_myotherprivaterepo/data",
         "dummy_email"  : "brian@example.org",
         "dummy_name"   : "Brian Seymour",
+        "dummy_ext"    : "",
+        "dummy_code"   : "",
         "hide_commits" : true,
         "auto_push"    : true,
+        "force"        : true,
         "remote"       : "https://github.com/yourname/dummy_privaterepo"
     }
 ]
@@ -38,17 +60,29 @@ Here you must provide the email address the script should search for in the repo
 ##### Where should the dummy repo be created (dummy_repo)
 Here you must provide the folder you want the script to transcribe to. The directory must not exist.
 
+##### Where should the dummy files be created? (dummy_repo_data)
+Need Files to add... and is used to help with language statistics (see below)
+
 ##### Which email address should be used in the dummy commits (dummy_email)
 Here you must provide a new email address the dummy commits will be made as. This will most likely be your GitHub email address so GitHub can properly associate the commits with your account.
 
 ##### Which name should be used in the dummy commits (dummy_name)
 Here you must provide the name the dummy commits will be made as. This really has no bearing, but, it should be your name.
 
+##### What the file extension for the dummy files be?
+Recommend using whatever primary language your private repo is...
+
+##### Code Sample that reflects the language your private repo is
+Needs to be a short snippet of code reflective of the language your private github repo is
+
 ##### Whether or not to expose the commit messages (hide_commits)
 You may not want to show the commit messages in your dummy repo. If this is the case, set this to true and a simple "private commit message" commit message will be put instead.
 
 ##### Whether or not to run a `git push origin master` at the end (auto_push)
 If this is set to true, you'll be prompted for your repo credentials for the push.
+
+##### Whether or not to run a `git push origin master --force` at the end (force)
+If this is set to true, you'll be prompted for your repo credentials for the push.  (use this if you're re-doing a run from scratch)
 
 ##### Which remote repo should the dummy repo be pushed to (remote)
 Here you must provide the GitHub URL that your dummy repo resides at.
@@ -63,6 +97,10 @@ python gitdummy.py
 
 Change Log
 ========
+
+#### Version 3 (2014-12-09) (oehokie)
+- Added Language Statistics
+- Compatible with older versions of git cli
 
 #### Version 2 (2014-11-22)
 - JSON based repo transcription
