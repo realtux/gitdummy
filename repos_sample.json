@@ -1,7 +1,13 @@
 [
     {
-        "target_repo"  : "/home/brian/myrepo",
-        "target_email" : "brian@example.org",
+        "target_repo"  : [
+            "/home/brian/myrepo",
+            "/home/brian/myrepo-old"
+        ],
+        "target_email" : [
+            "brian@example.org",
+            "bob@otherexample.com"
+        ],
         "dummy_repo"   : "/home/brian/dummy_myrepo",
         "dummy_repo_data"   : "/home/brian/dummy_myrepo/data",
         "dummy_email"  : "brian@example.org",
@@ -14,22 +20,8 @@
         "remote"       : "https://github.com/yourname/dummy_repo"
     },
     {
-        "target_repo"  : "/home/brian/myrepo-old",
-        "target_email" : "brian@example.org",
-        "dummy_repo"   : "/home/brian/dummy_myrepo",
-        "dummy_repo_data"   : "/home/brian/dummy_myrepo/data",
-        "dummy_email"  : "brian@example.org",
-        "dummy_name"   : "Brian Seymour",
-        "dummy_ext"    : ".java",
-        "dummy_code"   : "public class HelloWorld{public static void main(String[] args) {System.out.println(\"Hello World!\");}}",
-        "hide_commits" : false,
-        "auto_push"    : true,
-        "force"        : false,
-        "remote"       : "https://github.com/yourname/dummy_repo"
-    },
-    {
-        "target_repo"  : "/home/brian/myotherprivaterepo",
-        "target_email" : "brian@example.org",
+        "target_repo"  : ["/home/brian/myotherprivaterepo"],
+        "target_email" : ["brian@example.org"],
         "dummy_repo"   : "/home/brian/dummy_myotherprivaterepo",
         "dummy_repo_data"   : "/home/brian/dummy_myotherprivaterepo/data",
         "dummy_email"  : "brian@example.org",

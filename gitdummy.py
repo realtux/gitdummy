@@ -48,8 +48,7 @@ def init():
         'push',
         '-u',
         'origin',
-        'master',
-        '--force'
+        'master'
     ])
 
 for repo in repos:
@@ -75,58 +74,67 @@ for repo in repos:
         since = dotgitdummy.read()
         dotgitdummy.close()
 
-    os.chdir(repo['target_repo']) #switch back to the target repo
+    for targetrepo in repo['target_repo']:
 
-    print('since: '+since)
-    if since == '':
-        log_output = subprocess.check_output([
-            'git',
-            'log',
-            '--reverse',
-            '--pretty=format:%an||||%ae||||%ad||||%s||||%f-%h'
-        ])
-    else:
-        log_output = subprocess.check_output([
-            'git',
-            'log',
-            '--since',
-            since,
-            '--reverse',
-            '--pretty=format:%an||||%ae||||%ad||||%s||||%f-%h'
-        ])
+        os.chdir(targetrepo) #switch back to the target repo
 
-    log_split = log_output.split('\n')
+        print('since: '+since)
+        if since == '':
+            log_output = subprocess.check_output([
+                'git',
+                'log',
+                '--reverse',
+                '--pretty=format:%an||||%ae||||%ad||||%s||||%f-%h'
+            ])
+        else:
+            log_output = subprocess.check_output([
+                'git',
+                'log',
+                '--since',
+                since,
+                '--reverse',
+                '--pretty=format:%an||||%ae||||%ad||||%s||||%f-%h'
+            ])
 
-    print("Log Split Length: {}".format(len(log_split)))
+        log_split = log_output.split('\n')
 
-    if (len(log_split) > 1):
+        print("Log Split Length: {}".format(len(log_split)))
 
-        line_re = re.compile(r'^(.+)(?:\|\|\|\|)(.+)(?:\|\|\|\|)(.+)(?:\|\|\|\|)(.+)(?:\|\|\|\|)(.+)', re.DOTALL)
+        if (len(log_split) > 1):
 
-        commits = []
+            line_re = re.compile(r'^(.+)(?:\|\|\|\|)(.+)(?:\|\|\|\|)(.+)(?:\|\|\|\|)(.+)(?:\|\|\|\|)(.+)', re.DOTALL)
 
-        for line in log_split:
-            if '||||||||' in line: continue
-            if '||||||||||||' in line: continue
-            if '||||||||||||||||' in line: continue
-            if '||||||||||||||||||||' in line: continue
+            commits = []
 
-            commit_line = line_re.search(line).groups()
+            for line in log_split:
+                if '||||||||' in line: continue
+                if '||||||||||||' in line: continue
+                if '||||||||||||||||' in line: continue
+                if '||||||||||||||||||||' in line: continue
 
-            commits.append({
-                'name': commit_line[0],
-                'email': commit_line[1],
-                'date': commit_line[2],
-                'message': commit_line[3],
-                'filename': commit_line[4]
-            })
+                commit_line = line_re.search(line).groups()
 
+                commits.append({
+                    'name': commit_line[0],
+                    'email': commit_line[1],
+                    'date': commit_line[2],
+                    'message': commit_line[3],
+                    'filename': commit_line[4]
+                })
+
+    if len(commits) > 0:
         for commit in commits:
             private_commit_message = 'Commit message is private'
 
             os.chdir(repo['dummy_repo_data'])
             if not os.path.isfile(repo['dummy_repo_data'] + os.path.sep + commit['filename'] + repo['dummy_ext']):
-                if commit['email'] == repo['target_email']:
+                emailcheck = False
+                for email in repo['target_email']:
+                    if email == commit['email']:
+                        emailcheck = True
+                    else:
+                        emailcheck = False
+                if emailcheck:
                     #File doesn't already exist
                     if repo['hide_commits'] is not True:
                         private_commit_message = commit['filename']+"\n"+commit['message'].replace("@","[at]")
@@ -155,20 +163,25 @@ for repo in repos:
                         '--date',
                         commit['date']
                     ])
-
         if repo['auto_push'] is True:
             if repo['force'] is True:
                 subprocess.call([
                     'git',
                     'push',
+                    '-u',
+                    'origin',
+                    'master',
                     '--force'
                 ])
             else:
                 subprocess.call([
                     'git',
                     'push',
+                    '-u',
+                    'origin',
+                    'master'
                 ])
     else:
-        print("The length of the response was one, so there probably haven't been any new commits to merge in")
+        print("Length of commits was zero, nothing to update")
 
 os.chdir(origWD)
