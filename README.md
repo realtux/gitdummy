@@ -93,6 +93,7 @@ Change Log
 #### Version 3 (2014-12-09) (oehokie)
 - Added Language Statistics
 - Compatible with older versions of git cli
+- Arrays for email and targets instead of multiple entries
 
 #### Version 2 (2014-11-22)
 - JSON based repo transcription
