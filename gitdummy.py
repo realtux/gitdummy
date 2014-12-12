@@ -155,6 +155,7 @@ for repo in repos:
                         'add',
                         repo['dummy_repo'] + os.path.sep + '.gitdummy'
                     ])
+                    os.environ['GIT_COMMITTER_DATE'] = commit['date']
                     subprocess.call([
                         'git',
                         'commit',
@@ -181,6 +182,7 @@ for repo in repos:
                     'origin',
                     'master'
                 ])
+        del os.environ['GIT_COMMITTER_DATE']
     else:
         print("Length of commits was zero, nothing to update")
 
