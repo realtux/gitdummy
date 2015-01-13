@@ -7,38 +7,34 @@ Ever wanted to include your private repository contributions to your contributio
 ```json
 [
     {
-        "target_repo"  : [
-            "/home/brian/myrepo",
-            "/home/brian/myrepo-old"
-        ],
-        "target_email" : [
-            "brian@example.org",
-            "bob@otherexample.com"
-        ],
-        "dummy_repo"   : "/home/brian/dummy_myrepo",
+        "target_repo"       : ["/home/brian/myrepo","/home/brian/myrepo-old"],
+        "target_email"      : ["brian@example.org","bob@otherexample.com"],
+        "dummy_repo"        : "/home/brian/dummy_myrepo",
         "dummy_repo_data"   : "/home/brian/dummy_myrepo/data",
-        "dummy_email"  : "brian@example.org",
-        "dummy_name"   : "Brian Seymour",
-        "dummy_ext"    : ".js",
-        "dummy_code"   : "'use strict';",
-        "hide_commits" : false,
-        "auto_push"    : true,
-        "force"        : false,
-        "remote"       : "https://github.com/yourname/dummy_repo"
+        "dummy_email"       : "brian@example.org",
+        "dummy_name"        : "Brian Seymour",
+        "dummy_readme"      : "This public repository reflects the commits from a private repo (minus the actual code)",
+        "dummy_ext"         : ".js",
+        "dummy_code"        : "'use strict';",
+        "hide_commits"      : false,
+        "auto_push"         : true,
+        "force"             : false,
+        "remote"            : "https://github.com/yourname/dummy_repo"
     },
     {
-        "target_repo"  : ["/home/brian/myotherprivaterepo"],
-        "target_email" : ["brian@example.org"],
-        "dummy_repo"   : "/home/brian/dummy_myotherprivaterepo",
+        "target_repo"       : ["/home/brian/myotherprivaterepo"],
+        "target_email"      : ["brian@example.org"],
+        "dummy_repo"        : "/home/brian/dummy_myotherprivaterepo",
         "dummy_repo_data"   : "/home/brian/dummy_myotherprivaterepo/data",
-        "dummy_email"  : "brian@example.org",
-        "dummy_name"   : "Brian Seymour",
-        "dummy_ext"    : "",
-        "dummy_code"   : "",
-        "hide_commits" : true,
-        "auto_push"    : true,
-        "force"        : true,
-        "remote"       : "https://github.com/yourname/dummy_privaterepo"
+        "dummy_email"       : "brian@example.org",
+        "dummy_name"        : "Brian Seymour",
+        "dummy_readme"      : "This public repository reflects the commits from a private repo (minus the actual code)",
+        "dummy_ext"         : "",
+        "dummy_code"        : "",
+        "hide_commits"      : true,
+        "auto_push"         : true,
+        "force"             : true,
+        "remote"            : "https://github.com/yourname/dummy_privaterepo"
     }
 ]
 ```
@@ -60,6 +56,9 @@ Here you must provide a new email address the dummy commits will be made as. Thi
 
 ##### Which name should be used in the dummy commits (dummy_name)
 Here you must provide the name the dummy commits will be made as. This really has no bearing, but, it should be your name.
+
+##### What should your readme file contain? (dummy_readme)
+Here you must provide the actual text to the readme file associated to that specific repo
 
 ##### What the file extension for the dummy files be?
 Recommend using whatever primary language your private repo is...
