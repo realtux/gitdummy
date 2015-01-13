@@ -18,13 +18,14 @@ def init():
         'init'
     ])
     readme = open(repo['dummy_repo'] + os.path.sep + 'README.md', 'w+')
-    readme.write("This README was generated from GitDummy v3 (oehokie edition)\n")
-    readme.write("This public repository reflects the commits from a private repo (minus the actual code)\n")
-    readme.write("By creating this public repo, the user wanted their public contributions graph to reflect their private work.\n")
-    readme.write("...or at least that's what I wanted to do...\n")
-    readme.write("\n\n")
-    readme.write("If you want to see the user's private repo... ask and maybe they'll show you.")
+    readme.write(repo['dummy_readme'])
     readme.close()
+
+    ignore = open(repo['dummy_repo'] + os.path.sep + '.gitignore', 'w+')
+    ignore.write(".gitdummy\n")
+    ignore.write(".DS_Store\n")
+    ignore.close()
+    
     subprocess.call([
         'git',
         'add',
