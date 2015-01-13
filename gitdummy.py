@@ -12,6 +12,8 @@ repos = json.load(open('repos.json'))
 
 origWD = os.getcwd() # remember our original working directory
 
+commits = []
+
 def init():
     subprocess.call([
         'git',
