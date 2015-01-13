@@ -12,8 +12,6 @@ repos = json.load(open('repos.json'))
 
 origWD = os.getcwd() # remember our original working directory
 
-commits = []
-
 def init():
     subprocess.call([
         'git',
@@ -54,6 +52,8 @@ def init():
     ])
 
 for repo in repos:
+
+    commits = []
 
     if os.path.isdir(repo['dummy_repo']):
         #Directory Exists
