@@ -59,10 +59,11 @@ for repo in repos:
     if os.path.isdir(repo['dummy_repo']):
         # directory exists
         os.chdir(repo['dummy_repo'])
+
         if not os.path.isdir(repo['dummy_repo_data']):
             os.mkdir(repo['dummy_repo_data'])
-        if not os.path.isfile(repo['dummy_repo'] + os.path.sep + '.git'):
-            #But it hasn't been inited yet
+        if not os.path.isdir(repo['dummy_repo'] + os.path.sep + '.git'):
+            # but it hasn't been inited yet
             init()
     else:
         # directory didn't exist, so make the directory
@@ -185,7 +186,11 @@ for repo in repos:
                     'origin',
                     'master'
                 ])
-        del os.environ['GIT_COMMITTER_DATE']
+
+        try:
+            del os.environ['GIT_COMMITTER_DATE']
+        except:
+            pass
     else:
         print("Length of commits was zero, nothing to update")
 
