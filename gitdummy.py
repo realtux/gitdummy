@@ -80,7 +80,7 @@ for repo in repos:
 
     for targetrepo in repo['target_repo']:
 
-        os.chdir(targetrepo) #switch back to the target repo
+        os.chdir(targetrepo) # switch back to the target repo
 
         print('since: '+since)
         if since == '':
@@ -136,8 +136,7 @@ for repo in repos:
                 for email in repo['target_email']:
                     if email == commit['email']:
                         emailcheck = True
-                    else:
-                        emailcheck = False
+
                 if emailcheck:
                     #File doesn't already exist
                     if repo['hide_commits'] is not True:
