@@ -22,14 +22,13 @@ def init():
     readme.close()
 
     ignore = open(repo['dummy_repo'] + os.path.sep + '.gitignore', 'w+')
-    ignore.write(".gitdummy\n")
     ignore.write(".DS_Store\n")
     ignore.close()
     
     subprocess.call([
         'git',
         'add',
-        'README.md'
+        '-A'
     ])
     subprocess.call([
         'git',
@@ -138,7 +137,7 @@ for repo in repos:
                         emailcheck = True
 
                 if emailcheck:
-                    #File doesn't already exist
+                    # file doesn't already exist
                     if repo['hide_commits'] is not True:
                         private_commit_message = commit['filename']+"\n"+commit['message'].replace("@","[at]")
                     print("PRIVATE COMMIT MESSAGE: "+private_commit_message)
@@ -167,6 +166,7 @@ for repo in repos:
                         '--date',
                         commit['date']
                     ])
+
         if repo['auto_push'] is True:
             if repo['force'] is True:
                 subprocess.call([
