@@ -57,7 +57,7 @@ for repo in repos:
     commits = []
 
     if os.path.isdir(repo['dummy_repo']):
-        #Directory Exists
+        # directory exists
         os.chdir(repo['dummy_repo'])
         if not os.path.isdir(repo['dummy_repo_data']):
             os.mkdir(repo['dummy_repo_data'])
@@ -65,7 +65,7 @@ for repo in repos:
             #But it hasn't been inited yet
             init()
     else:
-        #directory didn't exist, so make the directory
+        # directory didn't exist, so make the directory
         os.mkdir(repo['dummy_repo'])
         os.mkdir(repo['dummy_repo_data'])
         os.chdir(repo['dummy_repo'])
