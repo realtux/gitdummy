@@ -40,16 +40,16 @@ Ever wanted to include your private repository contributions to your contributio
 ```
 
 ##### Where is your Git repo (target_repo)
-Here you must provide the Git repo that you want to transcribe from. The directory must exist and contain a .git folder inside.
+Here you must provide the absolute path to the Git repo that you want to transcribe from. The directory must exist and contain a .git folder inside.
 
 ##### Which email address should commits be checked against (target_email)
 Here you must provide the email address the script should search for in the repo being transcribed from. This makes it so only your commits will come out and into the repo being transcribed to.
 
 ##### Where should the dummy repo be created (dummy_repo)
-Here you must provide the folder you want the script to transcribe to. The directory must not exist.
+Here you must provide the absolute path to the folder you want the script to transcribe to. The directory must not exist.
 
 ##### Where should the dummy files be created? (dummy_repo_data)
-Need Files to add... and is used to help with language statistics (see below)
+Need Files to add... and is used to help with language statistics. (see below)
 
 ##### Which email address should be used in the dummy commits (dummy_email)
 Here you must provide a new email address the dummy commits will be made as. This will most likely be your GitHub email address so GitHub can properly associate the commits with your account.
