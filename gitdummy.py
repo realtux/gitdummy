@@ -5,7 +5,7 @@ import subprocess
 
 # check for repos.json
 if not os.path.isfile('repos.json'):
-    print 'No repos.json found, please create one'
+    print('No repos.json found, please create one')
     quit()
 
 repos = json.load(open('repos.json'))
@@ -99,7 +99,7 @@ for repo in repos:
                 '--pretty=format:%an||||%ae||||%ad||||%s||||%f-%h'
             ])
 
-        log_split = log_output.split('\n')
+        log_split = log_output.decode().split('\n')
 
         print("Log Split Length: {}".format(len(log_split)))
 
