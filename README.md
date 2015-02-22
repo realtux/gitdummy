@@ -88,15 +88,19 @@ python gitdummy.py
 
 Change Log
 ========
+#### Version 3.1 (2015-02-21)
+- Python 3 support (ebrian)
+- Custom readme content per repo (omarfouad)
+- Clean up and bug fixes (oehokie)
 
-#### Version 3 (2014-12-09) (oehokie)
-- Added Language Statistics
-- Compatible with older versions of git cli
-- Arrays for email and targets instead of multiple entries
+#### Version 3 (2014-12-09)
+- Added Language Statistics (oehokie)
+- Compatible with older versions of git cli (oehokie)
+- Arrays for email and targets instead of multiple entries (oehokie)
 
 #### Version 2 (2014-11-22)
-- JSON based repo transcription
-- Removed single run limitation
+- JSON based repo transcription (ebrian)
+- Removed single run limitation (ebrian)
 
 #### Version 1 (2014-10-21)
-- Single repo transcription
+- Single repo transcription (ebrian)
