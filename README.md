@@ -104,3 +104,4 @@ Change Log
 
 #### Version 1 (2014-10-21)
 - Single repo transcription (ebrian)
+- Private commit messages (w2pc)
