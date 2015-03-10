@@ -128,6 +128,10 @@ for repo in repos:
     if len(commits) > 0:
         for commit in commits:
             private_commit_message = 'Commit message is private'
+            
+            #check if commit message has greater character length than OS limit for filenames
+            if len(commit['filename']) > 255:
+               fullStr =  commit['filename']; commit['filename'] = fullStr[:255]
 
             os.chdir(repo['dummy_repo_data'])
             if not os.path.isfile(repo['dummy_repo_data'] + os.path.sep + commit['filename'] + repo['dummy_ext']):
