@@ -129,7 +129,9 @@ for repo in repos:
         for commit in commits:
             private_commit_message = 'Commit message is private'
             
-            #check if commit message has greater character length than OS limit for filenames
+            #this modification checks if commit message has a greater character length than Mac OS limit for filenames (=255)
+            #may be useful for other OS
+            #without this change, for very long commit messages it will throw error: IOError: [Errno 63] File name too long 
             if len(commit['filename']) > 255:
                fullStr =  commit['filename']; commit['filename'] = fullStr[:255]
 
