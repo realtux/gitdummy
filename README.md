@@ -88,7 +88,7 @@ python gitdummy.py
 
 Change Log
 ========
-#### Version 3.01 (March 2015)
+#### Version 3.11 (March 2015)
 - Filename truncation to abide by OS imposed 255 char limit (nicolelehrer)
 
 #### Version 3.1 (February 2015)
