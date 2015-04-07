@@ -132,8 +132,8 @@ for repo in repos:
             #this modification checks if commit message has a greater character length than Mac OS limit for filenames (=255)
             #may be useful for other OS
             #without this change, for very long commit messages it will throw error: IOError: [Errno 63] File name too long 
-            if len(commit['filename']) > 255:
-               fullStr =  commit['filename']; commit['filename'] = fullStr[:255]
+            if len(commit['filename']) > 200:
+               fullStr =  commit['filename']; commit['filename'] = fullStr[:200]
 
             os.chdir(repo['dummy_repo_data'])
             if not os.path.isfile(repo['dummy_repo_data'] + os.path.sep + commit['filename'] + repo['dummy_ext']):
