@@ -88,6 +88,9 @@ python gitdummy.py
 
 Change Log
 ========
+#### Version 3.12 (April 2015)
+- UTF-8 support (sepehr)
+
 #### Version 3.11 (March 2015)
 - Filename truncation to abide by OS imposed 255 char limit (nicolelehrer)
 
