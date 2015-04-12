@@ -99,7 +99,7 @@ for repo in repos:
                 '--pretty=format:%an||||%ae||||%ad||||%s||||%f-%h'
             ])
 
-        log_split = log_output.decode().split('\n')
+        log_split = log_output.decode('utf-8').split('\n')
 
         print("Log Split Length: {}".format(len(log_split)))
 
@@ -147,7 +147,8 @@ for repo in repos:
                     if repo['hide_commits'] is not True:
                         private_commit_message = commit['filename']+"\n"+commit['message'].replace("@","[at]")
                     print("PRIVATE COMMIT MESSAGE: "+private_commit_message)
-                    dummyfile = open(repo['dummy_repo_data'] + os.path.sep + commit['filename']+repo['dummy_ext'], 'w+')
+                    dummyfile = repo['dummy_repo_data'] + os.path.sep + commit['filename'][:120] + repo['dummy_ext']
+                    dummyfile = open(dummyfile, 'w+')
                     dummyfile.write(repo['dummy_code'])
                     dummyfile.close()
                     subprocess.call([
