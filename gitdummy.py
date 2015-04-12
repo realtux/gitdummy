@@ -99,7 +99,7 @@ for repo in repos:
                 '--pretty=format:%an||||%ae||||%ad||||%s||||%f-%h'
             ])
 
-        log_split = log_output.decode().split('\n')
+        log_split = log_output.decode('utf-8').split('\n')
 
         print("Log Split Length: {}".format(len(log_split)))
 
