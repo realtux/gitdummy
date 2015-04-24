@@ -2,6 +2,8 @@ import os
 import json
 import re
 import subprocess
+import uuid
+import base64
 
 # check for repos.json
 if not os.path.isfile('repos.json'):
@@ -134,6 +136,9 @@ for repo in repos:
             #without this change, for very long commit messages it will throw error: IOError: [Errno 63] File name too long 
             if len(commit['filename']) > 200:
                fullStr =  commit['filename']; commit['filename'] = fullStr[:200]
+
+            if repo['random_file_name']:
+                commit['filename'] = base64.urlsafe_b64encode(uuid.uuid4().bytes).replace('=', '')
 
             os.chdir(repo['dummy_repo_data'])
             if not os.path.isfile(repo['dummy_repo_data'] + os.path.sep + commit['filename'] + repo['dummy_ext']):
