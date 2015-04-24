@@ -91,6 +91,7 @@ python gitdummy.py
 Change Log
 ========
 #### Version 3.12 (April 2015)
+- Added random file name to completely hide commit data (LeonardoCardoso)
 - UTF-8 support (sepehr)
 
 #### Version 3.11 (March 2015)
