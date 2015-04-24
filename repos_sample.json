@@ -10,6 +10,7 @@
         "dummy_ext"         : ".js",
         "dummy_code"        : "'use strict';",
         "hide_commits"      : false,
+        "random_file_name"  : false,
         "auto_push"         : true,
         "force"             : false,
         "remote"            : "https    ://github.com/yourname/dummy_repo"
@@ -25,6 +26,7 @@
         "dummy_ext"         : "",
         "dummy_code"        : "",
         "hide_commits"      : true,
+        "random_file_name"  : true,
         "auto_push"         : true,
         "force"             : true,
         "remote"            : "https://github.com/yourname/dummy_privaterepo"

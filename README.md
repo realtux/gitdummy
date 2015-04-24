@@ -17,6 +17,7 @@ Ever wanted to include your private repository contributions to your contributio
         "dummy_ext"         : ".js",
         "dummy_code"        : "'use strict';",
         "hide_commits"      : false,
+        "random_file_name"  : false,
         "auto_push"         : true,
         "force"             : false,
         "remote"            : "https://github.com/yourname/dummy_repo"
@@ -32,6 +33,7 @@ Ever wanted to include your private repository contributions to your contributio
         "dummy_ext"         : "",
         "dummy_code"        : "",
         "hide_commits"      : true,
+        "random_file_name"  : true,
         "auto_push"         : true,
         "force"             : true,
         "remote"            : "https://github.com/yourname/dummy_privaterepo"
@@ -49,7 +51,7 @@ Here you must provide the email address the script should search for in the repo
 Here you must provide the absolute path to the folder you want the script to transcribe to. The directory must not exist.
 
 ##### Where should the dummy files be created? (dummy_repo_data)
-Need Files to add... and is used to help with language statistics. (see below)
+Need Files to add... and is used to help with language statistics. To use random file names just set "random_file_name" to true.
 
 ##### Which email address should be used in the dummy commits (dummy_email)
 Here you must provide a new email address the dummy commits will be made as. This will most likely be your GitHub email address so GitHub can properly associate the commits with your account.
