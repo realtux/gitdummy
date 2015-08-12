@@ -138,7 +138,12 @@ for repo in repos:
                fullStr =  commit['filename']; commit['filename'] = fullStr[:200]
 
             if repo['random_file_name']:
-                commit['filename'] = base64.urlsafe_b64encode(uuid.uuid4().bytes).replace('=', '')
+                commit['filename'] = base64\
+                    .urlsafe_b64encode(uuid.uuid4().bytes) \
+                    .decode('UTF-8') \
+                    .replace('=', '') \
+                    .replace('-', '') \
+                    .replace('_', '')
 
             os.chdir(repo['dummy_repo_data'])
             if not os.path.isfile(repo['dummy_repo_data'] + os.path.sep + commit['filename'] + repo['dummy_ext']):
