@@ -130,6 +130,7 @@ for repo in repos:
                 })
 
     if len(commits) > 0:
+        require_push = False
         for commit in commits:
             private_commit_message = 'Commit message is private'
             
@@ -185,8 +186,9 @@ for repo in repos:
                         '--date',
                         commit['date']
                     ])
+                    require_push = True
 
-        if repo['auto_push'] is True:
+        if repo['auto_push'] is True and require_push is True:
             if repo['force'] is True:
                 subprocess.call([
                     'git',
