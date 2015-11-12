@@ -81,6 +81,8 @@ for repo in repos:
         since = dotgitdummy.read()
         dotgitdummy.close()
 
+    commits = []
+
     for targetrepo in repo['target_repo']:
 
         os.chdir(targetrepo) # switch back to the target repo
@@ -110,8 +112,6 @@ for repo in repos:
         if (len(log_split) > 1):
 
             line_re = re.compile(r'^(.+)(?:\|\|\|\|)(.+)(?:\|\|\|\|)(.+)(?:\|\|\|\|)(.+)(?:\|\|\|\|)(.+)', re.DOTALL)
-
-            commits = []
 
             for line in log_split:
                 if '||||||||' in line: continue
