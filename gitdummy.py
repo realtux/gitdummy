@@ -166,6 +166,7 @@ for repo in repos:
                     subprocess.call([
                         'git',
                         'add',
+                        '--',
                         commit['filename']+repo['dummy_ext']
                     ])
                     dotgitdummy = open(repo['dummy_repo'] + os.path.sep + '.gitdummy', 'w+')
@@ -174,6 +175,7 @@ for repo in repos:
                     subprocess.call([
                         'git',
                         'add',
+                        '--',
                         repo['dummy_repo'] + os.path.sep + '.gitdummy'
                     ])
                     os.environ['GIT_COMMITTER_DATE'] = commit['date']
