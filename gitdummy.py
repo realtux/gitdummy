@@ -133,7 +133,9 @@ for repo in repos:
         require_push = False
         for commit in commits:
             private_commit_message = 'Commit message is private'
-            
+            if 'dummy_commit_message' in repo:
+                private_commit_message = repo['dummy_commit_message']
+
             #this modification checks if commit message has a greater character length than Mac OS limit for filenames (=255)
             #may be useful for other OS
             #without this change, for very long commit messages it will throw error: IOError: [Errno 63] File name too long 
