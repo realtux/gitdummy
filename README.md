@@ -7,36 +7,37 @@ Ever wanted to include your private repository contributions to your contributio
 ```json
 [
     {
-        "target_repo"       : ["/home/brian/myrepo","/home/brian/myrepo-old"],
-        "target_email"      : ["brian@example.org","bob@otherexample.com"],
-        "dummy_repo"        : "/home/brian/dummy_myrepo",
-        "dummy_repo_data"   : "/home/brian/dummy_myrepo/data",
-        "dummy_email"       : "brian@example.org",
-        "dummy_name"        : "Brian Seymour",
-        "dummy_readme"      : "This public repository reflects the commits from a private repo (minus the actual code)",
-        "dummy_ext"         : ".js",
-        "dummy_code"        : "'use strict';",
-        "hide_commits"      : false,
-        "random_file_name"  : false,
-        "auto_push"         : true,
-        "force"             : false,
-        "remote"            : "https://github.com/yourname/dummy_repo"
+        "target_repo"         : ["/home/brian/myrepo","/home/brian/myrepo-old"],
+        "target_email"        : ["brian@example.org","bob@otherexample.com"],
+        "dummy_repo"          : "/home/brian/dummy_myrepo",
+        "dummy_repo_data"     : "/home/brian/dummy_myrepo/data",
+        "dummy_email"         : "brian@example.org",
+        "dummy_name"          : "Brian Seymour",
+        "dummy_readme"        : "This public repository reflects the commits from a private repo (minus the actual code)",
+        "dummy_ext"           : ".js",
+        "dummy_code"          : "'use strict';",
+        "hide_commits"        : false,
+        "random_file_name"    : false,
+        "auto_push"           : true,
+        "force"               : false,
+        "remote"              : "https://github.com/yourname/dummy_repo"
     },
     {
-        "target_repo"       : ["/home/brian/myotherprivaterepo"],
-        "target_email"      : ["brian@example.org"],
-        "dummy_repo"        : "/home/brian/dummy_myotherprivaterepo",
-        "dummy_repo_data"   : "/home/brian/dummy_myotherprivaterepo/data",
-        "dummy_email"       : "brian@example.org",
-        "dummy_name"        : "Brian Seymour",
-        "dummy_readme"      : "This public repository reflects the commits from a private repo (minus the actual code)",
-        "dummy_ext"         : "",
-        "dummy_code"        : "",
-        "hide_commits"      : true,
-        "random_file_name"  : true,
-        "auto_push"         : true,
-        "force"             : true,
-        "remote"            : "https://github.com/yourname/dummy_privaterepo"
+        "target_repo"         : ["/home/brian/myotherprivaterepo"],
+        "target_email"        : ["brian@example.org"],
+        "dummy_repo"          : "/home/brian/dummy_myotherprivaterepo",
+        "dummy_repo_data"     : "/home/brian/dummy_myotherprivaterepo/data",
+        "dummy_email"         : "brian@example.org",
+        "dummy_name"          : "Brian Seymour",
+        "dummy_readme"        : "This public repository reflects the commits from a private repo (minus the actual code)",
+        "dummy_ext"           : "",
+        "dummy_code"          : "",
+        "dummy_commit_message": "Example other commit message",
+        "hide_commits"        : true,
+        "random_file_name"    : true,
+        "auto_push"           : true,
+        "force"               : true,
+        "remote"              : "https://github.com/yourname/dummy_privaterepo"
     }
 ]
 ```
@@ -69,7 +70,7 @@ Recommend using whatever primary language your private repo is...
 Needs to be a short snippet of code reflective of the language your private github repo is
 
 ##### Whether or not to expose the commit messages (hide_commits)
-You may not want to show the commit messages in your dummy repo. If this is the case, set this to true and a simple "private commit message" commit message will be put instead.
+You may not want to show the commit messages in your dummy repo. If this is the case, set this to true and a simple "private commit message" commit message will be put instead. To change this message just set "dummy_commit_message" (optional).
 
 ##### Whether or not to run a `git push origin master` at the end (auto_push)
 If this is set to true, you'll be prompted for your repo credentials for the push.
